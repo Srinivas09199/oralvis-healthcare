@@ -28,3 +28,51 @@ A full-stack web application for managing dental scan images with role-based aut
 - CSS3 for styling
 
 ## Project Structure
+oralvis-healthcare/
+├── backend/ # Node.js Express server
+├── frontend/ # React.js frontend
+├── .gitignore # Git ignore rules
+└── README.md # Project documentation
+
+## Installation & Setup
+
+### Backend Setup
+bash
+cd backend
+npm install
+cp .env.example .env  # Add your actual environment variables
+npm run dev
+
+Frontend Setup
+bash
+cd frontend
+npm install
+npm run dev
+Environment Variables
+Create a .env file in the backend directory:
+
+PORT = 5000
+JWT_SECRET = "hello_oralvis"
+CLOUDINARY_CLOUD_NAME = "dh4zrkrxf"
+CLOUDINARY_API_KEY = "364198796783161"
+CLOUDINARY_API_SECRET = "EnaZfe1tGmiD7GESCtnF8TNAKwE"
+
+API Endpoints
+POST /api/auth/register - User registration
+
+POST /api/auth/login - User login
+
+POST /api/scans/upload - Upload scan (Technician only)
+
+GET /api/scans - Get all scans (Dentist only)
+
+GET /api/pdf/:id - Download PDF report (Dentist only)
+
+Usage
+Register as a Technician or Dentist
+
+Login with your credentials
+
+Technicians: Upload patient scans with images
+
+Dentists: View scans and download PDF reports
