@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +23,7 @@ const Login = () => {
 
     try {
       const endpoint = isLogin ? '/login' : '/register';
-      const response = await axios.post(`http://localhost:5000/api/auth${endpoint}`, {
+      const response = await axios.post(`${API_URL}/api/auth${endpoint}`, {
         email,
         password,
         role

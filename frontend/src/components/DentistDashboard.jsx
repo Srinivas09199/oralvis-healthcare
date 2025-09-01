@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const DentistDashboard = () => {
   const [scans, setScans] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ const DentistDashboard = () => {
   const fetchScans = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/api/scans', {
+      const response = await axios.get(`${API_URL}/api/scans`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -30,7 +32,7 @@ const DentistDashboard = () => {
   const downloadPDF = async (scanId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`/api/pdf/${scanId}`, {
+      const response = await axios.get(`${API_URL}/api/pdf/${scanId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         },

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const TechnicianDashboard = () => {
   const [formData, setFormData] = useState({
     patient_name: '',
@@ -39,7 +41,7 @@ const TechnicianDashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('/api/scans/upload', data, {
+      const response = await axios.post(`${API_URL}/api/scans/upload`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

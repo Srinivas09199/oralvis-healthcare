@@ -14,11 +14,32 @@ require('./config/database')
 const app = express()
 const PORT = process.env.PORT || 5000
 
-// Middleware
+// Cors Config
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://oralvis-frontend.vercel.app', 
+  'https://oralvis-healthcare.vercel.app'
+]
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true
 }))
+
+// Middleware
+/*app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}))*/
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
