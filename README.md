@@ -77,4 +77,6 @@ Login with your credentials
 
 Technicians: Upload patient scans with images
 
+![image alt](https://github.com/Srinivas09199/oralvis-healthcare/blob/81446521fe622c1f9932d5fb9994071c1e509d1d/Screenshot%20(9).png)
+
 Dentists: View scans and download PDF reports
